@@ -64,7 +64,47 @@ table(data$Marital_Status)
 ## Remove the values YOLO and Absurd from Marital_Status
 data_filtered <- filter(data, Marital_Status != "YOLO", Marital_Status != "Absurd")
 
+## Filter the data to retain customers who spent more than $500 on wines OR are single
+data_temp <- filter(data, MntWines > 500 | Marital_Status == "Single")
+
+# Select different columns from a dataframe
+## Write a query that returns only the columns ID, Year_Birth, Education, Marital_Status
+data_temp <- select(data, ID, Year_Birth, Education, Marital_Status)
+data_temp <- select(data, ID:Marital_Status)
+
+## Write a query that returns only the columns ID, Year_Birth, Marital_Status (so I want to exclude Education)
+data_temp <- select(data, ID:Marital_Status, -Education)
+## Write a query to select columns Kidhome until Recency and Complain until Response
+data_temp <- select(data, Kidhome:Recency, Complain:Response)
+## Write a query to return all columns starting with Mnt
+data_temp <- select(data, starts_with("Mnt"))
+## Write a query to return all columns ending with Purchases
+data_temp <- select(data, ends_with("Purchases"))
+## Write a query to return all columns that contain P
+data_temp <- select(data, contains("P"))
+
+# Data Aggregation
+## Return the mean value for the column MntWines
+summarize(data, mean(MntWines))
+## Return the agg stats for the column MntWines
+summarize(data, avgsales = mean(MntWines), minsales = min(MntWines), maxsales = max(MntWines), mediansales = median(MntWines))
+
+# Detour --- Piping
+## Calculate the average amount spent on wines by singles
+data_temp <- filter(data, Marital_Status == "Single")
+summarize(data_temp, mean(MntWines))
+
+## This is a pipe --- %>%
+filter(data, Marital_Status == "Single") %>%
+  summarize(mean(MntWines))
+
+## Calculate the average amount spent on wines by singles have kids at home
+filter(data, Marital_Status == "Single") %>%
+  filter(Kidhome > 0) %>%
+  summarize(mean(MntWines))
 
 
-
-
+# Grouped aggregation
+## Calculate average spend on wines by Marital Status
+group_by(data, Marital_Status) %>%
+  summarize(mean(MntWines))
