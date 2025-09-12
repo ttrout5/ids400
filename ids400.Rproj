@@ -11,3 +11,9 @@ Encoding: UTF-8
 
 RnwWeave: Sweave
 LaTeX: pdfLaTeX
+
+BuildType: Website
+
+PythonType: system
+PythonVersion: 3.8.10
+PythonPath: C:/Users/trout/AppData/Local/Programs/Python/Python38/python.exe
