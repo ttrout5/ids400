@@ -56,13 +56,21 @@ data_final_piping <-
 
 data_practice_question <- 
   filter(marketing_data, Year_Birth <= 1980) %>% 
-  select(Marital_Status, starts_with("Num")) %>% 
+  select(Marital_Status, ends_with("Purchases")) %>% 
   group_by(Marital_Status) %>% 
   summarize_all(mean)
 
 data_practice_question
 
-?dplyr::starts_with
+## Practice Question
+## Write a piece of code to return the average number of purchases made via different channels i.e. Deals, Web, Catalog, Store. Aggregate the data by marital status but do not include customers born after 1980. Show results only for marital statuses where the avg number of purchases from web are greater than the avg number of purchases from deals.
+
+data_practice_question_expanded <- 
+  filter(marketing_data, Year_Birth <= 1980) %>% 
+  select(Marital_Status, ends_with("Purchases")) %>% 
+  group_by(Marital_Status) %>% 
+  summarize_all(mean) %>% 
+  filter(NumWebPurchases > NumDealsPurchases)
 
 
 
