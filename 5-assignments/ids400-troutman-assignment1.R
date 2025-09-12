@@ -64,16 +64,28 @@ answer3 <- pokemon_data %>%
   
 # 4. Find which primary type (Type 1) appears most often in the dataset. How many times does it appear?
 answer4 <- pokemon_data %>% 
+  count(type_1, sort = TRUE)
   
-  
+# ANSWER: The primary type that appears most often in the dataset is "Water". It appears 112 times.
   
   
 # 5. Which five Pokémon have the highest Speed? List their Name, Type 1, Type 2, Speed, and Legendary status.
+answer5 <- pokemon_data %>% 
+  select(name, type_1, type_2, speed, legendary) %>% 
+  arrange(desc(speed))
 
-
+View(head(answer5, 5))
+  
 
 # 6. For each (Type 1, Generation) pair, how many Pokémon are there? Within each generation, which pairs have the largest counts?
-  
+answer6 <- pokemon_data %>% 
+  count(type_1, generation)
+
+leaders <- answer6 %>% 
+  group_by(generation) %>% 
+  slice_max(n)
+
+View(leaders)
   
   
 # 7. For each Type 1, which Pokémon have Sp. Def strictly above their type’s average Sp. Def, and what are their Name, Type 1, and Sp. Def?
