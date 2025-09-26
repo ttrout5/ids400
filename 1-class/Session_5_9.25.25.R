@@ -42,3 +42,72 @@ library(ggplot2)
 
 ggplot(data = df, 
       mapping = aes(x = product)) + geom_bar()
+
+ggplot(data = df, 
+       mapping = aes(x = product)) + 
+        geom_bar(fill = "lightblue", col = "red") +
+        xlab("Product Name") +
+        ylab("Frequency") +
+        ggtitle("Frequency of Product Sales")
+
+
+## Numeric variable: profit
+## For a univariate chart for a numeric variable - boxplots, histograms, violin plots
+
+ggplot(data = df,
+       mapping = aes(x = profit)) +
+        geom_histogram(fill = "lightblue", col = "red") +
+        xlab("Profit") +
+        ylab("Frequency") +
+        ggtitle("Distribution of Profit")
+
+ggplot(data = df,
+       mapping = aes(x = profit)) +
+        geom_boxplot(fill = "lightblue", col = "red") +
+        xlab("Profit") +
+        ylab("Frequency") +
+        ggtitle("Distribution of Profit")
+
+ggplot(data = df,
+       mapping = aes(x = profit, y = 1)) +
+        geom_violin(fill = "lightblue", col = "red") +
+        xlab("Profit") +
+        ylab("Frequency") +
+        ggtitle("Distribution of Profit")
+
+# Bivariate Plots
+# --------------------------------------------------
+## Both Numeric -> x = revenue, y = profit - scatterplot
+ggplot(data = df,
+       mapping = aes(x = revenue, y = profit)) +
+        geom_point()
+
+ggplot(data = df,
+       mapping = aes(x = revenue, y = profit)) +
+        geom_point(col = "red") +
+        xlab("Revenue") +
+        ylab("Profit") +
+        ggtitle("Distribution of Profit vs. Revenue")
+
+## One numeric, one categorical -> profit by product
+ggplot(data = df,
+       mapping = aes(x = profit, y = product)) +
+        geom_boxplot()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
