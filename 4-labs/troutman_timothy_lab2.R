@@ -36,7 +36,7 @@ answer1 <- netflix_data %>%
 
 answer1
 
-# 2. Which 5 countries have the most Netflix titles? ---NEED HELP WITH THIS - THE COUNTRY FIELD CONTAINS A LIST OF COUNTRIES SOMETIMES
+# 2. Which 5 countries have the most Netflix titles?
 answer2 <- netflix_data %>% 
   filter(!is.na(country)) %>%
   separate_rows(country, sep = ", ") %>% 
@@ -51,7 +51,7 @@ answer3 <-
 
 answer3
 
-# 4. What are the top 10 most common genres listed on Netflix? ---NEED TO SEPARATE OUT THE GENRES FROM THE LISTS
+# 4. What are the top 10 most common genres listed on Netflix?
 answer4 <- netflix_data %>%
   separate_rows(listed_in, sep = ", ") %>% 
   count(listed_in, sort = TRUE) %>% 
@@ -95,6 +95,8 @@ netflix_data_modified <- netflix_data %>%
   mutate(
     duration_mins = parse_number(duration),
     main_genre = str_split(listed_in, ",") %>% sapply(`[`, 1)  %>%  str_trim())
+
+# NEED TO ANSWER WHAT PATTERNS I NOTICE
 
 
 # 9. Create a horizontal bar chart to display the ten most frequent genres represented in the dataset.
