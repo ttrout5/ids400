@@ -1,4 +1,9 @@
-# Troutman, Timothy IDs 400 Lab 2 -----------------------------------------
+############################################################
+# File: troutman_timothy_lab2.R
+# Author: Troutman, Timothy
+# Date: 2025-09-30
+# Description: Lab 2 Assignment R Script for Netflix Titles
+############################################################
 
 # Workspace Setup ---------------------------------------------------------
 library(dplyr)
@@ -38,10 +43,12 @@ answer3 <-
 
 answer3
 
-# 4. What are the top 10 most common genres listed on Netflix?
+# 4. What are the top 10 most common genres listed on Netflix? ---NEED TO SEPARATE OUT THE GENRES FROM THE LISTS
 answer4 <- netflix_data %>% 
   group_by(listed_in) %>% 
   summarize(count = n())
+
+answer4
 
 # ggplot2 Practice --------------------------------------------------------
 
@@ -50,8 +57,8 @@ ggplot(data = netflix_data, mapping = aes(x = type)) +
   geom_bar(fill = "red") +
   xlab("Media Type") +
   ylab("Count") +
-  ggtitle("Count of Movies and TV Shows")
-
+  ggtitle("Count of Movies and TV Shows") +
+  theme(plot.title = element_text(hjust = 0.5))
 
 # 6. How many titles were released each year? Explain using a line plot.
 
@@ -64,8 +71,8 @@ ggplot(data = count_of_titles_by_year, mapping = aes(x = release_year, y = count
   geom_line(col = "blue") +
   xlab("Release Year") +
   ylab("Count of Titles") +
-  ggtitle("Count of Titles Per Release Year")
-
+  ggtitle("Count of Titles Per Release Year") +
+  theme(plot.title = element_text(hjust = 0.5))
 
 # 7. Generate a stacked bar chart to compare the distribution of ratings between Movies and TV Shows.
 # type and rating
@@ -91,8 +98,3 @@ count_of_titles_by_year_and_type <-
 
 ggplot(data = count_of_titles_by_year_and_type, aes(x = type, y = release_year, fill = count)) +
   geom_tile()
-
-
-
-
-
