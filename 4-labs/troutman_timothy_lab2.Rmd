@@ -1,0 +1,28 @@
+---
+title: "troutman_timothy_lab2"
+author: "Troutman, Timothy"
+date: "2025-10-01"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(readr)
+library(tidyr)
+library(tidytext)
+library(stringr)
+netflix_data <- read_csv("netflix_titles.csv")
+```
+
+## R Markdown
+
+```{r}
+answer2 <- netflix_data %>% 
+  filter(!is.na(country)) %>%
+  separate_rows(country, sep = ", ") %>% 
+  count(country, sort = TRUE) %>% 
+  slice_max(n, n = 5)
+```
