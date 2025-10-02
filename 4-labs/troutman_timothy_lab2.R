@@ -101,9 +101,6 @@ ggplot(data = netflix_data_modified, mapping = aes(x = duration_mins, y = main_g
   labs(title = "Duration of Different Movie Genres", x = "Duration (mins)", y = "Genre") +
   theme(plot.title = element_text(hjust = 0.5), axis.text.y = element_text(hjust = 0))
 
-# NEED TO CREATE VIOLIN PLOT
-# NEED TO ANSWER WHAT PATTERNS I NOTICE
-
 # 9. Create a horizontal bar chart to display the ten most frequent genres represented in the dataset.
 top_ten_genres <- netflix_data %>%
   separate_rows(listed_in, sep = ", ") %>% 
