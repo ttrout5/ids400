@@ -96,8 +96,8 @@ netflix_data_modified <- netflix_data %>%
     duration_mins = parse_number(duration),
     main_genre = str_split(listed_in, ",") %>% sapply(`[`, 1)  %>%  str_trim())
 
+# NEED TO CREATE VIOLIN PLOT
 # NEED TO ANSWER WHAT PATTERNS I NOTICE
-
 
 # 9. Create a horizontal bar chart to display the ten most frequent genres represented in the dataset.
 top_ten_genres <- netflix_data %>%
@@ -109,7 +109,7 @@ ggplot(data = top_ten_genres, mapping = aes(x = reorder(listed_in, n), y = n)) +
   geom_col(fill = "darkgreen") +
   coord_flip() +
   labs(title = "Top 10 Netflix Genres", x = "Genre", y = "Count") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5), axis.text.y = element_text(hjust = 0))
 
 # 10. Create a heatmap showing the number of Netflix titles by release year and content type.
 netflix_data %>% 
