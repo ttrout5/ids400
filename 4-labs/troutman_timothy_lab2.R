@@ -39,7 +39,8 @@ answer1
 # 2. Which 5 countries have the most Netflix titles?
 answer2 <- netflix_data %>% 
   filter(!is.na(country)) %>%
-  separate_rows(country, sep = ", ") %>% 
+  separate_rows(country, sep = ",") %>%
+  mutate(country = trimws(country)) %>% 
   count(country, sort = TRUE) %>% 
   slice_max(n, n = 5)
 
@@ -53,7 +54,8 @@ answer3
 
 # 4. What are the top 10 most common genres listed on Netflix?
 answer4 <- netflix_data %>%
-  separate_rows(listed_in, sep = ", ") %>% 
+  separate_rows(listed_in, sep = ",") %>%
+  mutate(listed_in = trimws(listed_in)) %>% 
   count(listed_in, sort = TRUE) %>% 
   slice_max(n, n = 10)
 
@@ -101,9 +103,12 @@ ggplot(data = netflix_data_modified, mapping = aes(x = duration_mins, y = main_g
   labs(title = "Duration of Different Movie Genres", x = "Duration (mins)", y = "Genre") +
   theme(plot.title = element_text(hjust = 0.5), axis.text.y = element_text(hjust = 0))
 
+# Some patterns that I can see are that Dramas have the greatest range in duration with most data points clustered around ~100 mins. Romantic movies have the smallest range and are clustered around ~90 mins.
+
 # 9. Create a horizontal bar chart to display the ten most frequent genres represented in the dataset.
 top_ten_genres <- netflix_data %>%
-  separate_rows(listed_in, sep = ", ") %>% 
+  separate_rows(listed_in, sep = ",") %>%
+  mutate(listed_in = trimws(listed_in)) %>% 
   count(listed_in, sort = TRUE) %>% 
   slice_max(n, n = 10)
 
