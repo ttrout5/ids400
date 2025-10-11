@@ -80,6 +80,7 @@ life_tbl <- select(life_expectancy_data, Country, Year, Life_expectancy)
 
 economic_tbl <- select(life_expectancy_data, Country, Year, GDP, Schooling)
 
+
 answer7_full_tbl <- inner_join(life_tbl, economic_tbl, by = c("Country", "Year"))
 
 
